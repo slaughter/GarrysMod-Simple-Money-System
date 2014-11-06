@@ -1,3 +1,14 @@
+--[[
+	
+	Simple Money system. Made by fghdx.
+	https://github.com/fghdx/Gmod-Simple-Logs/
+	fghdx.me
+	
+	View the readme.md file to see how to add new functions.
+
+]]--
+
+
 if CLIENT then return end --We are only going to be dealing with client side code here.
 
 money = {
@@ -130,20 +141,22 @@ hook.Add("PlayerSay", "Chat_Commands", chat_commands) --Hook into PlayerSay so t
 
 
 --[[
-	
+	ADD CUSTOM FUNCTIONS DOWN HERE!
+
 	EXAMPLE FUNCTION:
-		This will give the $100 when he kills another player.
+		This will give the player $100 when he kills another player.
+
+		function add_money_on_kill(victim, weapon, killer)
+			if killer:IsPlayer() then
+				killer:money_give(100)
+			end
+
+		end
+		hook.Add("PlayerDeath", "add_money_on_kill", add_money_on_kill)
+
+
+
+
 
 ]]
-
-function add_money_on_kill(victim, weapon, killer)
-	if killer:IsPlayer() then
-		killer:money_give(100)
-	end
-
-end
-hook.Add("PlayerDeath", "add_money_on_kill", add_money_on_kill)
-
-
-
 
