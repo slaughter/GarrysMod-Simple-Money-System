@@ -21,7 +21,7 @@ money = {
 player_data = FindMetaTable("Player") --Gets all the functions that affect player.
 
 function init_spawn( ply ) --Load money on player initial spawn.
- 	ply:money_load()
+	ply:money_load()
 end
 hook.Add( "PlayerInitialSpawn", "playerInitialSpawn", init_spawn )
 
@@ -60,8 +60,8 @@ end
 -- $200 away from the player you would say ply:money_take(200)
 function player_data:money_take( amount )
 	if amount > 0 and self:money_enough(amount) then --Check if the amount is over 0 to prevent players sending or giving negative amounts.
-		self:money_interact(0, amount)
-	end
+	self:money_interact(0, amount)
+end
 end
 
 
@@ -91,7 +91,7 @@ if money['payday'] then
 				v:PrintMessage( HUD_PRINTTALK, "Payday! You were paid $" .. money['payday_money'] ) --Print to chat "Paid NAME $X"
 			end
 
-	 end )
+			end )
 end
 
 
@@ -99,8 +99,8 @@ end
 	This function gives the person you are looking at a specified amount of money.
 	To use look at a player and type "/givemoney x" or "!givemoney x", alternatively you
 	can use "give_money x" in console. x = amount of money you want to give.
-]]
-function player_data:give_player_money( amount )
+	]]
+	function player_data:give_player_money( amount )
 	local target = self:GetEyeTrace().Entity --Get the entity the player is looking at.
 	if target:IsPlayer() then --If the entity is a player do this
 		if self:money_enough(tonumber(amount)) then	--If the player has enough money, continue.
@@ -109,7 +109,7 @@ function player_data:give_player_money( amount )
 			self:PrintMessage( HUD_PRINTTALK, "Paid " .. target:Nick() .. " $" .. amount ) --Print to chat "Paid NAME $X"
 			target:PrintMessage( HUD_PRINTTALK, self:Nick() .. " paid you $" .. amount ) --This is untested. It should print to the targets chat
 																						 --"PLAYER paid you $X"
-		else
+																						else
 			self:PrintMessage( HUD_PRINTTALK, "You do not have enough money!" ) --If the player does not have enough money print it to chat.
 		end
 	else
@@ -158,16 +158,4 @@ hook.Add("PlayerSay", "Chat_Commands", chat_commands) --Hook into PlayerSay so t
 
 
 
-]]
-
-function give_item(ply, item)
-	if ply:money_enough(100) then
-		ply:money_take(100)
-		ply:Give(item)
-	end
-end
-
-function buy_item( client, command, arguments )
-	give_item(client, arguments[1])
-end
-concommand.Add("buy_item", buy_item)
+		]]
