@@ -11,7 +11,7 @@
 
 
 ]]--
-if SERVER then return end --We only want to execute client code here.
+--if SERVER then return end --We only want to execute client code here.
 
 surface.CreateFont("font", { font="Myriad Pro", size=38}) --Create our font.
 

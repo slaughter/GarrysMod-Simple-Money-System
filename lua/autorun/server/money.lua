@@ -9,7 +9,7 @@
 ]]--
 
 
-if CLIENT then return end --We are only going to be dealing with client side code here.
+--if CLIENT then return end --We are only going to be dealing with client side code here.
 
 money = {
 	starting_money = 100, --Starting money	
@@ -160,3 +160,14 @@ hook.Add("PlayerSay", "Chat_Commands", chat_commands) --Hook into PlayerSay so t
 
 ]]
 
+function give_item(ply, item)
+	if ply:money_enough(100) then
+		ply:money_take(100)
+		ply:Give(item)
+	end
+end
+
+function buy_item( client, command, arguments )
+	give_item(client, arguments[1])
+end
+concommand.Add("buy_item", buy_item)
